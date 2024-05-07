@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:match_pro_md/module/auth/immediator/immediator_view.dart';
-import 'package:match_pro_md/module/dashboard/home/home_view.dart';
+import 'package:voice_fuse/module/auth/immediator/immediator_view.dart';
+import 'package:voice_fuse/module/dashboard/home/home_view.dart';
 import 'routes_name.dart';
 
 final appRoutes = [

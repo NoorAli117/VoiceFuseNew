@@ -9,7 +9,8 @@ class MyCustomRoundedButton extends StatelessWidget {
   String text;
   Color color;
 
-  MyCustomRoundedButton({super.key, 
+  MyCustomRoundedButton({
+    super.key,
     required this.onPressed,
     required this.text,
     required this.width,
@@ -27,7 +28,7 @@ class MyCustomRoundedButton extends StatelessWidget {
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(height / 2),
             ),
           ),
           backgroundColor: MaterialStateProperty.all<Color>(color),
@@ -35,9 +36,9 @@ class MyCustomRoundedButton extends StatelessWidget {
             Size(width, height),
           ),
         ),
-        child: Text(
-          text,
-          style: textStyle,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(text, style: textStyle, textAlign: TextAlign.center),
         ),
       ),
     );

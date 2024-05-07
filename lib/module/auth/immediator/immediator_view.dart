@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:match_pro_md/utils/helper/my_style.dart';
+import 'package:voice_fuse/utils/helper/my_style.dart';
 
 import '../../../widgets/texts/my_text.dart';
 

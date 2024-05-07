@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "match_pro_md" "\0"
+            VALUE "FileDescription", "voice_fuse" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "match_pro_md" "\0"
+            VALUE "InternalName", "voice_fuse" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "match_pro_md.exe" "\0"
-            VALUE "ProductName", "match_pro_md" "\0"
+            VALUE "OriginalFilename", "voice_fuse.exe" "\0"
+            VALUE "ProductName", "voice_fuse" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

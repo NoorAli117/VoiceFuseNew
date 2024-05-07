@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:match_pro_md/routes/routes_name.dart';
 import 'routes/app_routes.dart';
+import 'routes/routes_name.dart';
 import 'utils/helper/app_helper.dart';
 import 'utils/helper/constant.dart';
 
@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-        initialRoute: AppHelper.helper.getToken != '' ? HomeRoute : ImmediatorRoute,
+      initialRoute: HomeRoute,
+      // initialRoute: AppHelper.helper.getToken != '' ? HomeRoute : ImmediatorRoute,
       // initialBinding: BindingsBuilder(() {
       //   Get.lazyPut(
       //       () => AppHelper.helper.getToken != ""
