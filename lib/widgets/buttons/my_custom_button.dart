@@ -27,6 +27,11 @@ class MyCustomButton extends StatelessWidget {
           fixedSize: MaterialStateProperty.all<Size>(
             Size(width, height),
           ),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0), // Set corner radius to 5
+            ),
+          ),
         ),
         child: Text(
           text,

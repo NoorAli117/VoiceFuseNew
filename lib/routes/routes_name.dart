@@ -1,6 +1,8 @@
 
 const String ImmediatorRoute = '/';
 const String HomeRoute = '/home';
+const String SignupRoute = '/signup';
+const String AfterSignUpRoute = '/aftersignup';
 // const String SplashRoute = "/splashImg";
 // const String LoginRoute = "/login";
 // const String SignUpRoute = "/signUp";

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:voice_fuse/module/auth/immediator/immediator_view.dart';
+import 'package:voice_fuse/module/auth/signup/after_sign-up.dart';
+import 'package:voice_fuse/module/auth/signup/sign_up.dart';
 import 'package:voice_fuse/module/dashboard/home/home_view.dart';
 import 'routes_name.dart';
 
 final appRoutes = [
   GetPage(name: ImmediatorRoute, page: () => const ImmediatorView()),
-  GetPage(
-      name: HomeRoute,
-      page: () => const HomeView(),
-      middlewares: [AuthMiddleWare()]),
+  GetPage(name: HomeRoute,page: () => const HomeView(),middlewares: [AuthMiddleWare()]),
+  GetPage(name: SignupRoute,page: () => const SignUp(),middlewares: [AuthMiddleWare()]),
+  GetPage(name: AfterSignUpRoute,page: () => const AfterSignUp(),middlewares: [AuthMiddleWare()]),
   // GetPage(
   //     name: HomeRoute, page: () => HomeView(), middlewares: [AuthMiddleWare()]),
   // GetPage(

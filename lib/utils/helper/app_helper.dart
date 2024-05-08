@@ -7,6 +7,9 @@ class AppHelper {
   static final helper = AppHelper();
 
 
+double getResponsiveTextSize(double screenWidth, {double baseSize = 20, double breakpoint = 700}) {
+  return (screenWidth < breakpoint) ? baseSize * (screenWidth / breakpoint) : baseSize;
+}
  
    String get getToken {
     final box = GetStorage();

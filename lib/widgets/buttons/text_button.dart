@@ -21,20 +21,20 @@ class MyTextButton extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     return TextButton(
-      onPressed: onPressed,
-      style: ButtonStyle(
-        overlayColor: MaterialStateProperty.resolveWith<Color>(
-          (Set<MaterialState> states) {
-            return states.contains(MaterialState.hovered)
-                ? MyColor.blue1.withOpacity(0.1)
-                : MyColor.transparent;
-          },
-        ),
-      ),
-      child: Text(
-        text,
-        style: textStyle,
-      ),
-    );
+  onPressed: onPressed,
+  style: ButtonStyle(
+    overlayColor: MaterialStateProperty.resolveWith<Color>(
+      (states) => states.contains(MaterialState.hovered) ? MyColor.blue1.withOpacity(0.1) : MyColor.transparent,
+    ),
+  ),
+  child: FittedBox(
+    fit: BoxFit.scaleDown,
+    child: Text(
+      text,
+      style: textStyle,
+    ),
+  ),
+);
+
   }
 }
