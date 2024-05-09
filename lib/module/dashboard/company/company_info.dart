@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
+
 import '../../../routes/routes_name.dart';
 import '../../../utils/helper/app_helper.dart';
 import '../../../utils/helper/my_color.dart';
@@ -9,14 +10,9 @@ import '../../../widgets/buttons/my_custom_button.dart';
 import '../../../widgets/textfields/my_textfield.dart';
 import '../../../widgets/texts/my_text.dart';
 
-class AfterSignUp extends StatefulWidget {
-  const AfterSignUp({super.key});
+class CompanyInfo extends StatelessWidget {
+  const CompanyInfo({super.key});
 
-  @override
-  State<AfterSignUp> createState() => _AfterSignUpState();
-}
-
-class _AfterSignUpState extends State<AfterSignUp> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -56,15 +52,7 @@ class _AfterSignUpState extends State<AfterSignUp> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           MyText(
-                            text: 'Create Your Free Air Account',
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: AppHelper.helper
-                                  .getResponsiveTextSize(width, baseSize: 18.0),
-                            ),
-                          ),
-                          MyText(
-                            text: 'Step 2 of 2: Basic Info',
+                            text: 'What\'s the name of your company?',
                             textStyle: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: AppHelper.helper
@@ -72,18 +60,13 @@ class _AfterSignUpState extends State<AfterSignUp> {
                             ),
                           ),
                           SizedBox(height: 20),
-                          Divider(),
-                          SizedBox(height: 20),
-                          MyText(text: 'Email', textStyle: TextStyle()),
-                          MyTextField(hintText: 'Enter Email Address'),
-                          SizedBox(height: 10),
-                          MyText(text: 'Password', textStyle: TextStyle()),
-                          MyTextField(hintText: 'Enter Password'),
+                          MyText(text: 'Company name', textStyle: TextStyle()),
+                          MyTextField(hintText: 'Enter Company name'),
                         ],
                       ),
                       SizedBox(height: 30),
                       MyCustomButton(
-                          onPressed: () => (Get.toNamed(CompanyInfoRoute)),
+                          onPressed: () => (Get.toNamed(InviteTeamRoute)),
                           text: 'Contineu',
                           width: width,
                           height: 40,

@@ -22,13 +22,11 @@ class DropDownTextfield extends StatefulWidget {
 class _DropDownTextfieldState extends State<DropDownTextfield> {
   @override
   Widget build(BuildContext context) {
-    return 
-     DropdownButtonFormField<String>( 
-       // Use DropdownButtonFormField instead of DropdownButton
-       decoration: InputDecoration(
+    return DropdownButtonFormField<String>(
+      // Use DropdownButtonFormField instead of DropdownButton
+      decoration: InputDecoration(
         hintText: widget.hintText,
-        
-        hintStyle: TextStyle(color: Colors.grey),
+        hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
         filled: true,
         fillColor: MyColor.grey1,
         enabledBorder: OutlineInputBorder(
@@ -41,17 +39,15 @@ class _DropDownTextfieldState extends State<DropDownTextfield> {
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       ),
-        items: <String>['Male', 'Female', 'Other'].map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
-        }).toList(),
-        onChanged: (value) {
-          widget.textController = value;
-        },
-      ).pOnly(top: 10, bottom: 15);
-   
+      items: <String>['Member', 'Admin'].map((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+      onChanged: (value) {
+        widget.textController = value;
+      },
+    ).pOnly(top: 10, bottom: 15);
   }
 }
-

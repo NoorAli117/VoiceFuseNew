@@ -8,7 +8,6 @@ import 'package:voice_fuse/utils/helper/my_color.dart';
 import 'package:voice_fuse/widgets/buttons/my_custom_button.dart';
 import 'package:voice_fuse/widgets/textfields/my_textfield.dart';
 import 'package:voice_fuse/widgets/texts/my_text.dart';
-
 import '../../../routes/routes_name.dart';
 import '../../../utils/helper/app_helper.dart';
 import '../../../widgets/buttons/text_button.dart';
@@ -26,7 +25,6 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-
     final width = MediaQuery.of(context).size.width;
     return Stack(
       alignment: AlignmentDirectional.center,
@@ -63,8 +61,20 @@ class _SignUpState extends State<SignUp> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          MyText(text: 'Create Your Free Air Account', textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: AppHelper.helper.getResponsiveTextSize(width, baseSize: 18.0))),
-                          MyText(text: 'Step 1 of 2: Basic Info', textStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: AppHelper.helper.getResponsiveTextSize(width, baseSize: 18.0))),
+                          MyText(
+                              text: 'Create Your Free Air Account',
+                              textStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: AppHelper.helper
+                                      .getResponsiveTextSize(width,
+                                          baseSize: 18.0))),
+                          MyText(
+                              text: 'Step 1 of 2: Basic Info',
+                              textStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: AppHelper.helper
+                                      .getResponsiveTextSize(width,
+                                          baseSize: 18.0))),
                           SizedBox(height: 20),
                           Divider(),
                           SizedBox(height: 20),
@@ -88,16 +98,23 @@ class _SignUpState extends State<SignUp> {
                         },
                       ),
                       SizedBox(height: 30),
-                      MyCustomButton(onPressed:() => (Get.toNamed(AfterSignUpRoute)), text: 'Contineu', width: width, height: 40, textStyle: TextStyle(color: MyColor.white1), color: MyColor.darkBlue),
+                      MyCustomButton(
+                          onPressed: () => (Get.toNamed(AfterSignUpRoute,
+                              preventDuplicates: false)),
+                          text: 'Contineu',
+                          width: width,
+                          height: 40,
+                          textStyle: TextStyle(color: MyColor.white1),
+                          color: MyColor.darkBlue),
                       SizedBox(height: 20),
                       MyTextButton(
-                                        onPressed: () => (print('pressed')),
-                                        text: 'Or Login To Existing Account',
-                                        textStyle: TextStyle(
-                      decoration: TextDecoration.underline,
-                      color: MyColor.black1,
-                      fontSize: 14),
-                                      ),
+                        onPressed: () => (print('pressed')),
+                        text: 'Or Login To Existing Account',
+                        textStyle: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: MyColor.black1,
+                            fontSize: 14),
+                      ),
                     ],
                   ),
                 ),

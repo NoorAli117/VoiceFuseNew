@@ -1,22 +1,26 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../routes/routes_name.dart';
+import 'package:get/route_manager.dart';
+import 'package:voice_fuse/routes/routes_name.dart';
+import 'package:voice_fuse/widgets/buttons/text_button.dart';
+import 'package:voice_fuse/widgets/textfields/my_dropdown_textfield.dart';
+
 import '../../../utils/helper/app_helper.dart';
 import '../../../utils/helper/my_color.dart';
 import '../../../widgets/buttons/my_custom_button.dart';
 import '../../../widgets/textfields/my_textfield.dart';
 import '../../../widgets/texts/my_text.dart';
 
-class AfterSignUp extends StatefulWidget {
-  const AfterSignUp({super.key});
+class InviteTeam extends StatefulWidget {
+  const InviteTeam({super.key});
 
   @override
-  State<AfterSignUp> createState() => _AfterSignUpState();
+  State<InviteTeam> createState() => Invite_TeamState();
 }
 
-class _AfterSignUpState extends State<AfterSignUp> {
+class Invite_TeamState extends State<InviteTeam> {
+  @override
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -56,39 +60,46 @@ class _AfterSignUpState extends State<AfterSignUp> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           MyText(
-                            text: 'Create Your Free Air Account',
+                            text: 'Invite team members',
                             textStyle: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: AppHelper.helper
                                   .getResponsiveTextSize(width, baseSize: 18.0),
                             ),
                           ),
+                          SizedBox(height: 20),
                           MyText(
-                            text: 'Step 2 of 2: Basic Info',
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: AppHelper.helper
-                                  .getResponsiveTextSize(width, baseSize: 18.0),
-                            ),
-                          ),
-                          SizedBox(height: 20),
-                          Divider(),
-                          SizedBox(height: 20),
-                          MyText(text: 'Email', textStyle: TextStyle()),
-                          MyTextField(hintText: 'Enter Email Address'),
-                          SizedBox(height: 10),
-                          MyText(text: 'Password', textStyle: TextStyle()),
-                          MyTextField(hintText: 'Enter Password'),
+                              text: 'Email addresses', textStyle: TextStyle()),
+                          MyText(
+                              text:
+                                  'Enter or paste one or more email addresses, separated by spaces or commas',
+                              textStyle: TextStyle(
+                                  color: MyColor.grey2, fontSize: 10)),
+                          MyTextField(hintText: 'Enter Company name'),
+                          MyText(text: 'Role', textStyle: TextStyle()),
+                          Container(
+                              width: 150,
+                              child: DropDownTextfield(
+                                  hintText: "Select an option"))
                         ],
                       ),
                       SizedBox(height: 30),
-                      MyCustomButton(
-                          onPressed: () => (Get.toNamed(CompanyInfoRoute)),
-                          text: 'Contineu',
-                          width: width,
-                          height: 40,
-                          textStyle: TextStyle(color: MyColor.white1),
-                          color: MyColor.darkBlue),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          MyTextButton(
+                              onPressed: () => (Get.toNamed(HomeRoute)),
+                              text: 'skip',
+                              textStyle: TextStyle(color: MyColor.lightBlue)),
+                          MyCustomButton(
+                              onPressed: () => (),
+                              text: 'Contineu',
+                              width: 200,
+                              height: 40,
+                              textStyle: TextStyle(color: MyColor.white1),
+                              color: MyColor.darkBlue),
+                        ],
+                      ),
                     ],
                   ),
                 ),
