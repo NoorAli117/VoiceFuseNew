@@ -16,6 +16,11 @@ class AfterSignUp extends StatefulWidget {
   State<AfterSignUp> createState() => _AfterSignUpState();
 }
 
+const List<String> scopes = <String>[
+  'email',
+  'https://www.googleapis.com/auth/contacts.readonly',
+];
+
 class _AfterSignUpState extends State<AfterSignUp> {
   @override
   Widget build(BuildContext context) {
