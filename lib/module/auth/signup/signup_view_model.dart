@@ -31,7 +31,7 @@ class SignUpViewModel extends GetxController {
 
     try {
       final response = await _api.apiCall(
-        '/auth/signup',
+        '/api/auth/signup/',
         null, // No query parameters in this request
         body,
         RequestType.POST,
