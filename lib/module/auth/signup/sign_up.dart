@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/route_manager.dart';
+import 'package:voice_fuse/module/auth/signup/signup_view_model.dart';
 import 'package:voice_fuse/utils/helper/my_color.dart';
 import 'package:voice_fuse/widgets/buttons/my_custom_button.dart';
 import 'package:voice_fuse/widgets/textfields/my_textfield.dart';
@@ -22,6 +23,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool value = false;
+  static final SignUpViewModel _signUpViewModel = SignUpViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +101,18 @@ class _SignUpState extends State<SignUp> {
                       ),
                       SizedBox(height: 30),
                       MyCustomButton(
-                          onPressed: () => (Get.toNamed(AfterSignUpRoute,
-                              preventDuplicates: false)),
+                          // onPressed: () => (Get.toNamed(AfterSignUpRoute,
+                          // preventDuplicates: false)),
+                          onPressed: () {
+                            _signUpViewModel.signUp(
+                              fname: 'John',
+                              lname: 'Doe',
+                              email: 'john.doe@example.com',
+                              password: 'password123',
+                              contact: '1234567890',
+                              companyName: 'Example Company',
+                            );
+                          },
                           text: 'Contineu',
                           width: width,
                           height: 40,

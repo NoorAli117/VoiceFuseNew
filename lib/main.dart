@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:voice_fuse/routes/app_routes.dart';
 import 'routes/routes_name.dart';
-import 'utils/helper/constant.dart';
 
 void main() {
   runApp(
