@@ -8,6 +8,7 @@ import 'package:voice_fuse/widgets/buttons/my_custom_rounded_button.dart';
 
 import '../../../routes/routes_name.dart';
 import '../../../widgets/buttons/text_button.dart';
+import '../signup/sign_up.dart';
 
 class ImmediatorView extends StatelessWidget {
   const ImmediatorView({super.key});
@@ -74,8 +75,7 @@ class ImmediatorView extends StatelessWidget {
                 ),
                 SizedBox(height: height * 0.4),
                 MyCustomRoundedButton(
-                  onPressed: () =>
-                      (Get.toNamed(SignupRoute, preventDuplicates: false)),
+                  onPressed: () => (Get.to(const SigUp())),
                   text1: 'Create Your Free Account',
                   text2: 'and join 70,000+ businesses',
                   width: 300,

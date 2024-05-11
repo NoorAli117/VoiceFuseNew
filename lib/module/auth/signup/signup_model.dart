@@ -1,17 +1,25 @@
 class SignUpModel {
-  String fname;
-  String lname;
-  String email;
-  String password;
-  String contact;
-  String companyName;
+  String? fname;
+  String? lname;
+  String? email;
+  String? password;
+  String? contact;
 
   SignUpModel({
-    required this.fname,
-    required this.lname,
-    required this.email,
-    required this.password,
-    required this.contact,
-    required this.companyName,
+    this.fname,
+    this.lname,
+    this.email,
+    this.password,
+    this.contact,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'fname': fname,
+      'lname': lname,
+      'email': email,
+      'password': password,
+      'contact': contact,
+    };
+  }
 }

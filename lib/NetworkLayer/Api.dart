@@ -32,52 +32,58 @@ class Api {
   }
 
   Future<NetworkResponse?> apiCall(
-      String url,
-      Map<String, dynamic>? queryParameters,
-      Map<String, dynamic>? body,
-      RequestType requestType) async {
-    late Response result;
-    // if (AppHelper.helper.getToken != "") {
-    //   header['Authorization'] = "Bearer ${AppHelper.helper.getToken}";
-    // }
+    String url,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? body,
+    RequestType requestType,
+  ) async {
     try {
+      if (AppHelper.helper.getToken.isNotEmpty) {
+        header['Authorization'] = "Bearer ${AppHelper.helper.getToken}";
+      }
+
       print(url);
+
+      Response result;
+
       switch (requestType) {
         case RequestType.GET:
-          {
-            Options options = Options(headers: header);
-            result = await dio.get(url,
-                queryParameters: queryParameters, options: options);
-            break;
-          }
+          result = await dio.get(
+            url,
+            queryParameters: queryParameters,
+            options: Options(headers: header),
+          );
+          break;
         case RequestType.POST:
-          {
-            Options options = Options(headers: header);
-            result = await dio.post(url, data: body, options: options);
-            print(dio.httpClientAdapter);
-            print(result);
-            break;
-          }
+          result = await dio.post(
+            url,
+            data: body,
+            options: Options(headers: header),
+          );
+          break;
         case RequestType.DELETE:
-          {
-            Options options = Options(headers: header);
-            result =
-                await dio.delete(url, data: queryParameters, options: options);
-            break;
-          }
+          result = await dio.delete(
+            url,
+            data: queryParameters,
+            options: Options(headers: header),
+          );
+          break;
         case RequestType.PUT:
-          {
-            Options options = Options(headers: header);
-            result = await dio.put(url, data: body, options: options);
-            break;
-          }
+          result = await dio.put(
+            url,
+            data: body,
+            options: Options(headers: header),
+          );
+          break;
         case RequestType.PATCH:
-          {
-            Options options = Options(headers: header);
-            result = await dio.patch(url, data: body, options: options);
-            break;
-          }
+          result = await dio.patch(
+            url,
+            data: body,
+            options: Options(headers: header),
+          );
+          break;
       }
+
       if (result.statusCode == 200 || result.statusCode == 201) {
         if (result.data is List) {
           return NetworkResponse.successList(result.data);
@@ -85,11 +91,13 @@ class Api {
           return NetworkResponse.success(result.data);
         }
       } else {
-        return const NetworkResponse.error("Data is null");
+        return NetworkResponse.error("Data is null");
       }
-    } on DioException catch (error) {
+    } on DioError catch (error) {
+      // Handle DioError
       return NetworkResponse.error(error.message ?? "");
     } catch (error) {
+      // Handle other errors
       return NetworkResponse.error(error.toString());
     }
   }

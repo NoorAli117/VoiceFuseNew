@@ -1,28 +1,22 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../utils/helper/my_color.dart';
 
 class MyTextField extends StatefulWidget {
-  
-  MyTextField({
-    Key? key,
-    required this.hintText,
-    this.textController
-  }) : super(key: key);
+  MyTextField(
+      {Key? key, required this.hintText, this.textController, this.validator})
+      : super(key: key);
 
-  String hintText;
-  TextEditingController? textController;
+  final String hintText;
+  final TextEditingController? textController;
+  final FormFieldValidator<String>? validator; // Define the validator
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
 }
 
 class _MyTextFieldState extends State<MyTextField> {
-  
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -43,6 +37,10 @@ class _MyTextFieldState extends State<MyTextField> {
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       ),
+      validator: widget.validator, // Pass the validator to TextFormField
+      onChanged: (_) {
+        setState(() {}); // Trigger validation on every change
+      },
     ).pOnly(top: 10, bottom: 15);
   }
 }

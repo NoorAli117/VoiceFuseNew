@@ -2,24 +2,26 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../routes/routes_name.dart';
+import 'package:voice_fuse/module/auth/signup/signup_view_model.dart';
 import '../../../utils/helper/app_helper.dart';
 import '../../../utils/helper/my_color.dart';
 import '../../../widgets/buttons/my_custom_button.dart';
 import '../../../widgets/textfields/my_textfield.dart';
 import '../../../widgets/texts/my_text.dart';
+import '../../dashboard/home/home_view.dart';
 
-class AfterSignUp extends StatefulWidget {
-  const AfterSignUp({super.key});
+class AfterSignUp extends StatelessWidget {
+  // final String fullName;
+  // final String phone;
+  const AfterSignUp({
+    super.key,
+  });
 
-  @override
-  State<AfterSignUp> createState() => _AfterSignUpState();
-}
-
-class _AfterSignUpState extends State<AfterSignUp> {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SignUpViewModel>();
     final width = MediaQuery.of(context).size.width;
+    final _formKey = GlobalKey<FormState>();
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
@@ -49,47 +51,92 @@ class _AfterSignUpState extends State<AfterSignUp> {
                 margin: EdgeInsets.all(20),
                 child: Padding(
                   padding: EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MyText(
-                            text: 'Create Your Free Air Account',
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: AppHelper.helper
-                                  .getResponsiveTextSize(width, baseSize: 18.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            MyText(
+                              text: 'Create Your Free Air Account',
+                              textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: AppHelper.helper
+                                    .getResponsiveTextSize(width,
+                                        baseSize: 18.0),
+                              ),
                             ),
-                          ),
-                          MyText(
-                            text: 'Step 2 of 2: Basic Info',
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: AppHelper.helper
-                                  .getResponsiveTextSize(width, baseSize: 18.0),
+                            MyText(
+                              text: 'Step 2 of 2: Basic Info',
+                              textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: AppHelper.helper
+                                    .getResponsiveTextSize(width,
+                                        baseSize: 18.0),
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 20),
-                          Divider(),
-                          SizedBox(height: 20),
-                          MyText(text: 'Email', textStyle: TextStyle()),
-                          MyTextField(hintText: 'Enter Email Address'),
-                          SizedBox(height: 10),
-                          MyText(text: 'Password', textStyle: TextStyle()),
-                          MyTextField(hintText: 'Enter Password'),
-                        ],
-                      ),
-                      SizedBox(height: 30),
-                      MyCustomButton(
-                          onPressed: () => (Get.toNamed(CompanyInfoRoute)),
-                          text: 'Contineu',
+                            SizedBox(height: 20),
+                            Divider(),
+                            SizedBox(height: 20),
+                            MyText(text: 'Email', textStyle: TextStyle()),
+                            MyTextField(
+                              hintText: 'Enter Email Address',
+                              textController: controller.emailController,
+                              validator: (value) {
+                                // Regex to validate full name with space between two aspirate words
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter your full name';
+                                } else if (!RegExp(
+                                        r'^[a-zA-Z]+(?: [a-zA-Z]+)+$')
+                                    .hasMatch(value)) {
+                                  return 'Please enter a valid full name';
+                                }
+                                return null;
+                              },
+                            ),
+                            SizedBox(height: 10),
+                            MyText(text: 'Password', textStyle: TextStyle()),
+                            MyTextField(
+                              hintText: 'Enter Password',
+                              textController: controller.passwordController,
+                              validator: (value) {
+                                // Regex to validate full name with space between two aspirate words
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter your full name';
+                                } else if (!RegExp(
+                                        r'^[a-zA-Z]+(?: [a-zA-Z]+)+$')
+                                    .hasMatch(value)) {
+                                  return 'Please enter a valid full name';
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 30),
+                        MyCustomButton(
+                          onPressed: () {
+                            controller.basicInfor.value.email =
+                                controller.emailController.text;
+                            controller.basicInfor.value.password =
+                                controller.passwordController.text;
+
+                            if (_formKey.currentState!.validate()) {
+                              controller.checkAvailability(
+                                email: controller.emailController.text,
+                              );
+                            }
+                          },
+                          text: 'Continue',
                           width: width,
                           height: 40,
                           textStyle: TextStyle(color: MyColor.white1),
-                          color: MyColor.darkBlue),
-                    ],
+                          color: MyColor.darkBlue,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

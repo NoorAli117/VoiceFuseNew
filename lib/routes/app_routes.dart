@@ -18,14 +18,14 @@ abstract class AppPages {
       name: HomeRoute,
       page: () => const HomeView(),
     ),
-    GetPage(
-      name: SignupRoute,
-      page: () => const SignUp(),
-    ),
-    GetPage(
-      name: AfterSignUpRoute,
-      page: () => const AfterSignUp(),
-    ),
+    // GetPage(
+    //   name: SignupRoute,
+    //   page: () => const SignUp(),
+    // ),
+    // GetPage(
+    //   name: AfterSignUpRoute,
+    //   page: () => const AfterSignUp(),
+    // ),
     GetPage(
       name: CompanyInfoRoute,
       page: () => const CompanyInfo(),

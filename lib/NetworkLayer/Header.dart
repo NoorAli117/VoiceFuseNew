@@ -1,5 +1,6 @@
 final Map<String, String> header = {
   'Content-Type': 'application/json',
+  'Accept': 'application/json'
 };
 
 // 'client-secret': 'xyz',
