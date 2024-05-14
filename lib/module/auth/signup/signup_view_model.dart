@@ -66,8 +66,14 @@ class SignUpViewModel extends GetxController {
     }
   }
 
-  Future<bool> checkAvailability({String? email, String? contact}) async {
-    final body = email != null ? {'email': email} : {'contact': contact};
+  Future<bool> checkAvailability({String? value}) async {
+    // Determine the key based on the value type
+    final String key =
+        value != null && value.contains('@') ? 'email' : 'contact';
+
+    // Construct the body based on the key
+    final body = {key: value};
+
     try {
       final response = await _api.apiCall(
         '/api/auth/check_availability/',
@@ -76,25 +82,19 @@ class SignUpViewModel extends GetxController {
         RequestType.POST,
       );
 
-      // Check the type of response and handle accordingly
+      // Check the response and return true or false accordingly
       return response?.when(
             success: (data) {
-              if (email != null) {
-                signUp(body: basicInfor.value);
-                return true;
-              }
+              // API call was successful
+              return data['status'] == false; // Return true if status is false
             },
-            successList: (data) {
-              // Handle success with list data if needed
-              if (email != null) {
-                Get.to(const HomeView());
-                return true;
-              }
+            successList: (_) {
+              // This is a successList response, handle as needed
+              return false;
             },
             error: (message) {
               // Handle error
-              print('Sign up failed: $message');
-              // You might want to handle different error scenarios here
+              print('Error: $message');
               return false;
             },
             loading: (message) {

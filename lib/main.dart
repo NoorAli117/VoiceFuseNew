@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: ImmediatorViewRoute,
+      initialRoute: DashboardRoute,
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.fade,
       getPages: AppPages.pages,

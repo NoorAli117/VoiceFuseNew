@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:voice_fuse/module/auth/signin/signin_view_model.dart';
 import 'package:voice_fuse/module/auth/signup/signup_view_model.dart';
 import 'package:voice_fuse/widgets/textfields/password_textfield.dart';
 import '../../../utils/helper/app_helper.dart';
@@ -11,16 +12,12 @@ import '../../../widgets/textfields/my_textfield.dart';
 import '../../../widgets/texts/my_text.dart';
 import '../../dashboard/home/home_view.dart';
 
-class AfterSignUp extends StatelessWidget {
-  // final String fullName;
-  // final String phone;
-  const AfterSignUp({
-    super.key,
-  });
+class Signin extends StatelessWidget {
+  const Signin({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<SignUpViewModel>();
+    final controller = Get.put(SignInViewModel());
     final width = MediaQuery.of(context).size.width;
     final _formKey = GlobalKey<FormState>();
     bool _obscurePassword = true;
@@ -64,7 +61,7 @@ class AfterSignUp extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             MyText(
-                              text: 'Create Your Free Air Account',
+                              text: 'Sign in',
                               textStyle: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: AppHelper.helper
@@ -73,7 +70,7 @@ class AfterSignUp extends StatelessWidget {
                               ),
                             ),
                             MyText(
-                              text: 'Step 2 of 2: Basic Info',
+                              text: 'to continue to Voice Fuse',
                               textStyle: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: AppHelper.helper
@@ -86,7 +83,7 @@ class AfterSignUp extends StatelessWidget {
                             SizedBox(height: 20),
                             MyText(text: 'Email', textStyle: TextStyle()),
                             MyTextField(
-                              hintText: 'Enter Email Address',
+                              hintText: 'Email address',
                               textController: controller.emailController,
                               validator: (value) {
                                 // Regex to validate email
@@ -97,15 +94,17 @@ class AfterSignUp extends StatelessWidget {
                                     .hasMatch(value)) {
                                   // Check if the value does not match the email pattern
                                   return 'Please enter a valid email';
-                                } else if (isAvailable) {
-                                  // Check if the email is available
-                                  return 'The email is already in use';
                                 }
+                                // else if (isAvailable) {
+                                //   // Check if the email is available
+                                //   return 'The email is already in use';
+                                // }
                                 return null; // Return null if validation succeeds
                               },
                             ),
                             SizedBox(height: 10),
-                            MyText(text: 'Password', textStyle: TextStyle()),
+                            MyText(
+                                text: 'Enter Password', textStyle: TextStyle()),
                             MyPasswordTextField(
                               hintText: 'Enter Password',
                               textController: controller.passwordController,
@@ -125,20 +124,18 @@ class AfterSignUp extends StatelessWidget {
                         ),
                         SizedBox(height: 30),
                         MyCustomButton(
-                          onPressed: () async {
+                          onPressed: () {
                             controller.basicInfor.value.email =
                                 controller.emailController.text;
                             controller.basicInfor.value.password =
                                 controller.passwordController.text;
 
-                            isAvailable = await controller.checkAvailability(
-                                    value: controller.emailController.text) ??
-                                false;
+                            // isAvailable = await controller.checkAvailability(
+                            // value: controller.emailController.text) ??
+                            // false;
                             if (_formKey.currentState!.validate()) {
-                              if (!isAvailable) {
-                                controller.signUp(
-                                    body: controller.basicInfor.value);
-                              }
+                              controller.signIn(
+                                  body: controller.basicInfor.value);
                             }
                           },
                           text: 'Continue',

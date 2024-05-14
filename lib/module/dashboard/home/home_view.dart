@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:voice_fuse/module/dashboard/dashboard.dart';
 import 'package:voice_fuse/utils/helper/app_helper.dart';
 import 'package:voice_fuse/utils/helper/my_color.dart';
 import 'package:voice_fuse/widgets/buttons/my_custom_rounded_button.dart';
@@ -75,7 +76,9 @@ class HomeView extends StatelessWidget {
                     color: MyColor.darkBlue),
                 SizedBox(height: height * 0.01),
                 MyTextButton(
-                  onPressed: () => (print('pressed')),
+                  onPressed: () {
+                    Get.to(Dashboard());
+                  },
                   text:
                       'No thanks. I\'d rather permanently give up my 5 free calls and just verify my account later',
                   textStyle: TextStyle(

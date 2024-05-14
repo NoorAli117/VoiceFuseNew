@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 class MyColor {
   // GREY
+  static Color colorGrey = const Color(0xFF677294);
+  static Color colorBlue = const Color(0xFF412DB2);
+  static Color colorGreen = const Color(0xFF0EBE7F);
   static Color grey1 = const Color.fromARGB(255, 237, 236, 236);
   static Color grey2 = const Color.fromARGB(255, 133, 128, 128);
   static Color blue1 = const Color.fromARGB(255, 75, 228, 254);

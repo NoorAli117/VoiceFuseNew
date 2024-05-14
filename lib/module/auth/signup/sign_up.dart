@@ -11,6 +11,7 @@ import 'package:voice_fuse/widgets/texts/my_text.dart';
 import '../../../utils/helper/app_helper.dart';
 import '../../../widgets/buttons/text_button.dart';
 import '../../../widgets/my_custom_checkbox/customeCheckbox.dart';
+import '../signin/signin.dart';
 
 class SigUp extends StatelessWidget {
   const SigUp({super.key});
@@ -21,8 +22,7 @@ class SigUp extends StatelessWidget {
     final controller = Get.put(SignUpViewModel());
     final _formKey = GlobalKey<FormState>();
     bool value = false;
-    bool isAvailable;
-    late bool valid_number = false;
+    bool isAvailable = false;
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
@@ -113,16 +113,12 @@ class SigUp extends StatelessWidget {
                                 } else if (!RegExp(r'^[0-9]{10}$')
                                     .hasMatch(value)) {
                                   return 'Please enter a valid phone number';
+                                } else if (isAvailable) {
+                                  return 'The number is already in use';
                                 }
-                                return null;
+                                return null; // Return null if validation succeeds
                               },
                             ),
-                            SizedBox(height: 10),
-                            if (valid_number)
-                              MyText(
-                                text: 'The number is already in use',
-                                textStyle: TextStyle(color: Colors.red),
-                              ),
                           ],
                         ),
                         CustomCheckboxWithText(
@@ -147,11 +143,11 @@ class SigUp extends StatelessWidget {
                             var fname = nameParts[0]; // "John"
                             var lname =
                                 nameParts.length > 1 ? nameParts[1] : "";
+                            isAvailable = await controller.checkAvailability(
+                                    value: phone) ??
+                                false;
                             if (_formKey.currentState!.validate()) {
-                              isAvailable = await controller.checkAvailability(
-                                  contact: phone);
-                              if (isAvailable) {
-                                valid_number = false;
+                              if (!isAvailable) {
                                 print('done');
                                 controller.saveBasicInfo(
                                   SignUpModel(
@@ -165,10 +161,7 @@ class SigUp extends StatelessWidget {
                                 Get.to(
                                   AfterSignUp(),
                                 );
-                              } else {
-                                valid_number = true;
-                                print('not done');
-                              }
+                              } else {}
                             }
                           },
                           text: 'Continue',
@@ -179,7 +172,9 @@ class SigUp extends StatelessWidget {
                         ),
                         SizedBox(height: 20),
                         MyTextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(Signin());
+                          },
                           text: 'Or Login To Existing Account',
                           textStyle: TextStyle(
                             decoration: TextDecoration.underline,

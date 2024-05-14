@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../utils/helper/my_color.dart';
 
-class MyTextField extends StatefulWidget {
-  MyTextField({
+class MyPasswordTextField extends StatefulWidget {
+  MyPasswordTextField({
     Key? key,
     required this.hintText,
     this.textController,
@@ -13,18 +12,27 @@ class MyTextField extends StatefulWidget {
 
   final String hintText;
   final TextEditingController? textController;
-  final FormFieldValidator<String>? validator; // Define the validator
+  final FormFieldValidator<String>? validator;
 
   @override
-  State<MyTextField> createState() => _MyTextFieldState();
+  State<MyPasswordTextField> createState() => _MyPasswordTextFieldState();
 }
 
-class _MyTextFieldState extends State<MyTextField> {
+class _MyPasswordTextFieldState extends State<MyPasswordTextField> {
+  late bool _obscurePassword; // Initialize this variable
+
+  @override
+  void initState() {
+    super.initState();
+    _obscurePassword = true; // Set initial state for password visibility
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.textController,
       cursorColor: MyColor.blue1,
+      obscureText: _obscurePassword, // Use _obscurePassword here
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintStyle: TextStyle(color: Colors.grey),
@@ -39,8 +47,18 @@ class _MyTextFieldState extends State<MyTextField> {
           borderRadius: BorderRadius.circular(5),
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        suffixIcon: IconButton(
+          icon: Icon(
+            _obscurePassword ? Icons.visibility_off : Icons.visibility,
+          ),
+          onPressed: () {
+            setState(() {
+              _obscurePassword = !_obscurePassword;
+            });
+          },
+        ),
       ),
-      validator: widget.validator, // Pass the validator to TextFormField
+      validator: widget.validator,
       onChanged: (_) {
         setState(() {}); // Trigger validation on every change
       },

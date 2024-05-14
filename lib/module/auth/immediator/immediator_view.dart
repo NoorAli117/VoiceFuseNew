@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:voice_fuse/module/auth/signin/signin.dart';
 import 'package:voice_fuse/utils/helper/app_helper.dart';
 import 'package:voice_fuse/utils/helper/my_color.dart';
 import 'package:voice_fuse/widgets/buttons/my_custom_rounded_button.dart';
@@ -85,7 +86,9 @@ class ImmediatorView extends StatelessWidget {
                 ),
                 SizedBox(height: height * 0.01),
                 MyTextButton(
-                  onPressed: () => (print('pressed')),
+                  onPressed: () {
+                    Get.to(Signin());
+                  },
                   text: 'Or Login To Existing Account',
                   textStyle: TextStyle(
                     decoration: TextDecoration.underline,
